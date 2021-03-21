@@ -13,4 +13,4 @@ strings tracks.
 Listen to some of the best samples.
 ([more results](https://salu133445.github.io/musegan/results))
 
-{% include audio_player.html filename="best_samples.mp3" %}
+{% include audio_player.html filename="myexample.mp3" %}
