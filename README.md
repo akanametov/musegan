@@ -1,4 +1,4 @@
 # MuseGAN
 A Pytorch implementation of MuseGAN
 
-[!](https://akanametov.github.io/musegan/)
+[Check out the generated piano music](https://akanametov.github.io/musegan/)
