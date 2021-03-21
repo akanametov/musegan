@@ -22,7 +22,7 @@ See [demo](https://github.com/akanametov/MuseGAN/blob/main/demo/demo.ipynb) for 
 * Helpfull modules are under `utils.py`.
 * The model trainer is under `trainer.py`.
 * 
-##### `Generators` and `Critic` losses
+##### `Generator` and `Critic` losses
 
 <a><img src="images/losses.png" align="center" height="500px" width="700px"/></a>
 
