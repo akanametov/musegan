@@ -24,7 +24,7 @@ See [demo](https://github.com/akanametov/MuseGAN/blob/main/demo/demo.ipynb) for 
 * 
 ##### `Generators` and `Discriminators` losses
 
-<a><img src="images/losses.png" align="center" height="200px" width="300px"/></a>
+<a><img src="images/losses.png" align="center" height="300px" width="420px"/></a>
 
 ## License
 
