@@ -2,7 +2,7 @@ MuseGAN
 =========
 A Pytorch implementation of MuseGAN
 
-[Check out the generated piano music](https://akanametov.github.io/MuseGAN/)
+[Check out the generated piano music](https://akanametov.github.io/musegan/)
 
 :star: Star this project on GitHub — it helps!
 
