@@ -1,0 +1,4 @@
+tqdm==4.62.0
+progress==1.6
+matplotlib==3.4.2
+music21==6.7.1
