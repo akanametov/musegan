@@ -17,7 +17,7 @@ generate music.
 
 ## Training 
 
-See [demo](https://github.com/akanametov/MuseGAN/blob/main/demo/demo.ipynb) for more details of training process.
+See [demo](https://github.com/akanametov/MuseGAN/blob/dev/demo/demo.ipynb) for more details of training process.
 * The models are under `model.py`.
 * Helpfull modules are under `utils.py`.
 * The model trainer is under `trainer.py`.
