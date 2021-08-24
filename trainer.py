@@ -1,7 +1,8 @@
 import torch
 from torch import nn
 from tqdm.notebook import tqdm
-from utils import WassersteinLoss, GradientPenalty
+from criterion import WassersteinLoss, GradientPenalty
+
 
 class Trainer():
     def __init__(self, generator, critic, g_optimizer, c_optimizer, device='cuda:0'):
