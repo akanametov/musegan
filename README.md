@@ -17,10 +17,13 @@ generate music.
 
 ## Training 
 
-See [demo](https://github.com/akanametov/MuseGAN/blob/dev/demo/demo.ipynb) for more details of training process.
-* The models are under `model.py`.
-* Helpfull modules are under `utils.py`.
-* The model trainer is under `trainer.py`.
+See [demo](https://github.com/akanametov/musegan/blob/dev/demo/demo.ipynb) for more details of training process.
+* The model components and utils are under `gan` folder.
+* The Midi dataset is under `data/utils.py`.
+* The MuseGAN model wrapper is under `musegan.py`.
+
+
+To start training your own MuseGAN simply run `train.py` script with needed parameters.
 
 ##### `Generator` and `Critic` losses
 
