@@ -1,3 +1,5 @@
+"""Train script for MuseGAN."""
+
 import os
 import argparse
 import numpy as np
@@ -9,8 +11,9 @@ from torch.utils.data import DataLoader
 from musegan import MuseGAN
 from data.utils import MidiDataset
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(prog = 'top', description='Train MusaGAN.')
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(prog="top", description="Train MusaGAN.")
+    parser.add_argument("--path", type=str, default="data/chorales/Jsb16thSeparated.npz", help="Path to dataset.")
     parser.add_argument("--epochs", type=int, default=500, help="Number of epochs.")
     parser.add_argument("--batch_size", type=int, default=64, help="Batch size.")
     parser.add_argument("--z_dimension", type=int, default=32, help="Z(noise)-space dimension.")
@@ -20,20 +23,19 @@ if __name__ == '__main__':
     parser.add_argument("--c_channels", type=int, default=128, help="Critic hidden channels.")
     parser.add_argument("--c_features", type=int, default=1024, help="Critic hidden features.")
     parser.add_argument("--c_lr", type=float, default=0.001, help="Critic learning rate.")
+    parser.add_argument("--device", type=str, default="cuda:0", help="Device.")
     args = parser.parse_args()
     # parameters of musegan
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     gan_args = args.__dict__.copy()
-    gan_args.pop('epochs', None)
-    gan_args.pop('batch_size', None)
-    gan_args["device"] = device
+    gan_args.pop("path", None)
+    gan_args.pop("epochs", None)
+    gan_args.pop("batch_size", None)
     # train
-    print("Start training ...")
     print("Loading dataset ...")
-    dataset = MidiDataset(path='data/chorales/Jsb16thSeparated.npz')
+    dataset = MidiDataset(path=args.path)
     dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=True, drop_last=True)
     print("Loading model ...")
     musegan = MuseGAN(**gan_args)
     print("Start training ...")
-    _ = musegan.train(dataloader=dataloader, epochs=args.epochs)
+    musegan.train(dataloader=dataloader, epochs=args.epochs)
     print("Training finished.")
