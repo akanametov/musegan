@@ -1,0 +1,7 @@
+[flake8]
+max-complexity = 20
+max-line-length = 120
+ignore = E203, W503, F401
+exclude = __init__.py demos/* .ipynb_checkpoints/*
+docstring-convention = numpy
+select = B,C,D,E,F,W,T4,B9
