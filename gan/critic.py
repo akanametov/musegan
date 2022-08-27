@@ -20,19 +20,23 @@ class MuseCritic(nn.Module):
 
     """
 
-    n_tracks = 4
-    n_bars = 2
-    n_steps_per_bar = 16
-    n_pitches = 84
-
     def __init__(
         self,
         hid_channels: int = 128,
         hid_features: int = 1024,
         out_features: int = 1,
+        n_tracks: int = 4,
+        n_bars: int = 2,
+        n_steps_per_bar: int = 16,
+        n_pitches: int = 84,
     ) -> None:
         """Initialize."""
         super().__init__()
+        self.n_tracks = n_tracks
+        self.n_bars = n_bars
+        self.n_steps_per_bar = n_steps_per_bar
+        self.n_pitches = n_pitches
+        in_features = 4 * hid_channels if n_bars == 2 else 12 * hid_channels
         self.net = nn.Sequential(
             # input shape: (batch_size, n_tracks, n_bars, n_steps_per_bar, n_pitches)
             nn.Conv3d(self.n_tracks, hid_channels, (2, 1, 1), (1, 1, 1), padding=0),
@@ -60,7 +64,7 @@ class MuseCritic(nn.Module):
             nn.LeakyReLU(0.3, inplace=True),
             # output shape: (batch_size, hid_channels, n_bars//2, n_steps_per_bar//16, n_pitches//12)
             nn.Flatten(),
-            nn.Linear(4 * hid_channels, hid_features),
+            nn.Linear(in_features, hid_features),
             nn.LeakyReLU(0.3, inplace=True),
             # output shape: (batch_size, hid_features)
             nn.Linear(hid_features, out_features),

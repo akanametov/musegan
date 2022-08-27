@@ -23,18 +23,19 @@ class BarGenerator(nn.Module):
 
     """
 
-    n_steps_per_bar = 16
-    n_pitches = 84
-
     def __init__(
         self,
         z_dimension: int = 32,
         hid_features: int = 1024,
         hid_channels: int = 512,
-        out_channels: int = 1
+        out_channels: int = 1,
+        n_steps_per_bar = 16,
+        n_pitches = 84,
     ) -> None:
         """Initialize."""
         super().__init__()
+        self.n_steps_per_bar = n_steps_per_bar
+        self.n_pitches = n_pitches
         self.net = nn.Sequential(
             # input shape: (batch_size, 4*z_dimension)
             nn.Linear(4 * z_dimension, hid_features),
