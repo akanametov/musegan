@@ -13,6 +13,44 @@ from music21 import converter
 from music21 import note, stream, duration, tempo
 
 
+class LPDDataset(Dataset):
+    """LPDDataset.
+
+    Parameters
+    ----------
+    path: str
+        Path to dataset.
+    """
+
+    def __init__(
+        self,
+        path: str,
+    ) -> None:
+        """Initialize."""
+        dataset = np.load(path, allow_pickle=True, encoding="bytes")
+        self.data_binary = dataset["arr_0"]
+
+    def __len__(self) -> int:
+        """Return the number of samples in dataset."""
+        return len(self.data_binary)
+
+    def __getitem__(self, index: int) -> Tensor:
+        """Return one samples from dataset.
+
+        Parameters
+        ----------
+        index: int
+            Index of sample.
+
+        Returns
+        -------
+        Tensor:
+            Sample.
+
+        """
+        return torch.from_numpy(self.data_binary[index]).float()
+
+
 class MidiDataset(Dataset):
     """MidiDataset.
 
