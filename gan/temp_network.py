@@ -19,15 +19,15 @@ class TemporalNetwork(nn.Module):
 
     """
 
-    n_bars = 2
-
     def __init__(
         self,
         z_dimension: int = 32,
         hid_channels: int = 1024,
+        n_bars: int = 2,
     ) -> None:
         """Initialize."""
         super().__init__()
+        self.n_bars = n_bars
         self.net = nn.Sequential(
             # input shape: (batch_size, z_dimension)
             Reshape(shape=[z_dimension, 1, 1]),

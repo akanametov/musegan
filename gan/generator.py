@@ -24,28 +24,31 @@ class MuseGenerator(nn.Module):
 
     """
 
-    n_tracks = 4
-    n_bars = 2
-    n_steps_per_bar = 16
-    n_pitches = 84
-
     def __init__(
         self,
         z_dimension: int = 32,
         hid_channels: int = 1024,
         hid_features: int = 1024,
         out_channels: int = 1,
+        n_tracks: int = 4,
+        n_bars: int = 2,
+        n_steps_per_bar: int = 16,
+        n_pitches: int = 84,
     ) -> None:
         """Initialize."""
         super().__init__()
+        self.n_tracks = n_tracks
+        self.n_bars = n_bars
+        self.n_steps_per_bar = n_steps_per_bar
+        self.n_pitches = n_pitches
         # chords generator
-        self.chords_network = TemporalNetwork(z_dimension, hid_channels)
+        self.chords_network = TemporalNetwork(z_dimension, hid_channels, n_bars=n_bars)
         # melody generators
         self.melody_networks = nn.ModuleDict({})
         for n in range(self.n_tracks):
             self.melody_networks.add_module(
                 "melodygen_" + str(n),
-                TemporalNetwork(z_dimension, hid_channels),
+                TemporalNetwork(z_dimension, hid_channels, n_bars=n_bars),
             )
         # bar generators
         self.bar_generators = nn.ModuleDict({})
@@ -56,7 +59,9 @@ class MuseGenerator(nn.Module):
                     z_dimension,
                     hid_features,
                     hid_channels // 2,
-                    out_channels
+                    out_channels,
+                    n_steps_per_bar=n_steps_per_bar,
+                    n_pitches=n_pitches,
                 )
             )
         # musegan generator compiled

@@ -35,7 +35,6 @@ MANIFEST
 
 # Jupyter Notebook
 .ipynb_checkpoints
-*.ipynb
 
 # Environments
 env/
